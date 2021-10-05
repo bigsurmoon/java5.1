@@ -13,6 +13,7 @@ class BonusServiceTest {
 
         assertEquals(expected, actual);
     }
+
     @Test
     void shouldCalculateRegisteredAndBonusOverLimit() {
         BonusService service = new BonusService();
@@ -23,16 +24,18 @@ class BonusServiceTest {
 
         assertEquals(expected, actual);
     }
+
     @Test
     void shouldCalculateNotRegisteredAndBonusUnderLimit() {
         BonusService service = new BonusService();
         long amount = 1000_60;
         boolean registered = false;
-        long expected = 30;
+        long expected = 10;
         long actual = service.calculate(amount, registered);
 
         assertEquals(expected, actual);
     }
+
     @Test
     void shouldCalculateNotRegisteredAndBonusOverLimit() {
         BonusService service = new BonusService();
@@ -43,61 +46,45 @@ class BonusServiceTest {
 
         assertEquals(expected, actual);
     }
+
     @Test
     void shouldCalculateZeroAmountNotRegisteredAndBonusOverLimit() {
         BonusService service = new BonusService();
         long amount = 0;
-        boolean registered = false;
-        long expected = 500;
-        long actual = service.calculate(amount, registered);
-
-        assertEquals(expected, actual);
-    }
-    @Test
-    void shouldCalculateZeroAmountRegisteredAndBonusOverLimit() {
-        BonusService service = new BonusService();
-        long amount = 0;
-        boolean registered = true;
-        long expected = 500;
-        long actual = service.calculate(amount, registered);
-
-        assertEquals(expected, actual);
-    }
-    @Test
-    void shouldCalculateZeroAmountRegisteredAndBonusUnderLimit() {
-        BonusService service = new BonusService();
-        long amount = 0;
-        boolean registered = true;
-        long expected = 30;
-        long actual = service.calculate(amount, registered);
-
-        assertEquals(expected, actual);
-    }
-    @Test
-    void shouldCalculateZeroAmountNotRegisteredAndBonusUnderLimit() {
-        BonusService service = new BonusService();
-        long amount = 0;
-        boolean registered = false;
-        long expected = 30;
-        long actual = service.calculate(amount, registered);
-
-        assertEquals(expected, actual);
-    }
-    @Test
-    void shouldCalculateNotRegisteredAndZeroBonus() {
-        BonusService service = new BonusService();
-        long amount = 1000_60;
         boolean registered = false;
         long expected = 0;
         long actual = service.calculate(amount, registered);
 
         assertEquals(expected, actual);
     }
+
     @Test
-    void shouldCalculateRegisteredAndZeroBonus() {
+    void shouldCalculateZeroAmountRegisteredAndBonusOverLimit() {
         BonusService service = new BonusService();
-        long amount = 1000_60;
+        long amount = 0;
         boolean registered = true;
+        long expected = 0;
+        long actual = service.calculate(amount, registered);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldCalculateZeroAmountRegisteredAndBonusUnderLimit() {
+        BonusService service = new BonusService();
+        long amount = 0;
+        boolean registered = true;
+        long expected = 0;
+        long actual = service.calculate(amount, registered);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldCalculateZeroAmountNotRegisteredAndBonusUnderLimit() {
+        BonusService service = new BonusService();
+        long amount = 0;
+        boolean registered = false;
         long expected = 0;
         long actual = service.calculate(amount, registered);
 
